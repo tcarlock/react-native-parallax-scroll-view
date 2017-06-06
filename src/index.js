@@ -88,7 +88,7 @@ class ParallaxScrollView extends Component {
     const foreground = this._renderForeground({ fadeOutForeground, parallaxHeaderHeight, stickyHeaderHeight, renderForeground: renderForeground || renderParallaxHeader });
     const bodyComponent = this._wrapChildren(children, { contentBackgroundColor, stickyHeaderHeight, contentContainerStyle });
     const footerSpacer = this._renderFooterSpacer({ contentBackgroundColor });
-    const maybeStickyHeader = this._maybeRenderStickyHeader({ parallaxHeaderHeight, stickyHeaderHeight, backgroundColor, renderFixedHeader, renderStickyHeader });
+    const maybeStickyHeader = this._maybeRenderStickyHeader({ parallaxHeaderHeight, stickyHeaderHeight, backgroundColor, renderStickyHeader });
     const scrollElement = renderScrollComponent(scrollViewProps);
 
     return (
@@ -108,6 +108,7 @@ class ParallaxScrollView extends Component {
           )
         }
         { maybeStickyHeader }
+        { renderFixedHeader && renderFixedHeader() }
       </View>
     );
   }
@@ -272,7 +273,7 @@ class ParallaxScrollView extends Component {
     );
   }
 
-  _maybeRenderStickyHeader({ parallaxHeaderHeight, stickyHeaderHeight, backgroundColor, renderFixedHeader, renderStickyHeader }) {
+  _maybeRenderStickyHeader({ parallaxHeaderHeight, stickyHeaderHeight, backgroundColor, renderStickyHeader }) {
     const { viewWidth, scrollY } = this.state;
     if (renderStickyHeader) {
       const p = pivotPoint(parallaxHeaderHeight, stickyHeaderHeight);
@@ -316,7 +317,7 @@ class ParallaxScrollView extends Component {
         </View>
       );
     } else {
-      return renderFixedHeader ? renderFixedHeader() : null;
+      return null;
     }
   }
 }
