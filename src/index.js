@@ -274,7 +274,7 @@ class ParallaxScrollView extends Component {
 
   _maybeRenderStickyHeader({ parallaxHeaderHeight, stickyHeaderHeight, backgroundColor, renderFixedHeader, renderStickyHeader }) {
     const { viewWidth, scrollY } = this.state;
-    if (renderStickyHeader || renderFixedHeader) {
+    if (renderStickyHeader) {
       const p = pivotPoint(parallaxHeaderHeight, stickyHeaderHeight);
       let height = interpolate(scrollY, {
         inputRange: [0, stickyHeaderHeight],
@@ -313,11 +313,10 @@ class ParallaxScrollView extends Component {
               )
               : null
           }
-          { renderFixedHeader && renderFixedHeader() }
         </View>
       );
     } else {
-      return null;
+      return renderFixedHeader ? renderFixedHeader() : null;
     }
   }
 }
