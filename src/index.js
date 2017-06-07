@@ -99,8 +99,11 @@ class ParallaxScrollView extends Component {
           React.cloneElement(scrollElement, {
               ref: SCROLLVIEW_REF,
               style: [styles.scrollView, scrollElement.props.style],
-              scrollEventThrottle: 16,
               onScroll: this._onScroll.bind(this),
+              scrollEventThrottle: 16,
+              showsVerticalScrollIndicator: false,
+              automaticallyAdjustContentInsets: false,
+              renderHeader: this._renderFakeHeader.bind(this, { stickyHeaderHeight }),
             },
             foreground,
             bodyComponent,
@@ -178,6 +181,14 @@ class ParallaxScrollView extends Component {
         viewWidth: width,
         viewHeight: height
       });
+    }
+  }
+
+  _renderFakeHeader({ stickyHeaderHeight }) {
+    if (Platform.OS === 'ios') {
+      return (
+        <View style={{ height: stickyHeaderHeight }} />
+      );
     }
   }
 
