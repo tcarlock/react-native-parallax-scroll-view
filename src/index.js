@@ -138,7 +138,7 @@ class ParallaxScrollView extends Component {
 							scrollEventThrottle: 1,
 							onScroll: Animated.event(
 								[{ nativeEvent: { contentOffset: { y: this.scrollY } } }],
-								{ useNativeDriver: true, listener: this._onScroll.bind(this) }
+								{ listener: this._onScroll.bind(this) }
 							),
 							renderHeader: this._renderFakeHeader.bind(this, { stickyHeaderHeight }),
 							showsVerticalScrollIndicator: false,
