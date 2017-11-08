@@ -155,7 +155,7 @@ class ParallaxScrollView extends Component {
 
     const p = pivotPoint(this.state.parallaxHeaderHeight, stickyHeaderHeight);
 
-    this._maybeUpdateScrollPosition(e);
+    // this._maybeUpdateScrollPosition(e);
 
     if (e.nativeEvent.contentOffset.y >= p) {
       onChangeHeaderVisibility(false);
