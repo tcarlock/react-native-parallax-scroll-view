@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Animated, Dimensions, ScrollView, View, ViewPropTypes } from 'react-native'
+import { Animated, Platform, Dimensions, ScrollView, View, ViewPropTypes } from 'react-native'
 
 const styles = require('./styles')
 
@@ -217,6 +217,14 @@ class ParallaxScrollView extends Component {
 				viewWidth: width,
 				viewHeight: height
 			})
+		}
+	}
+
+	_renderFakeHeader({ stickyHeaderHeight }) {
+		if (Platform.OS === 'ios') {
+			return (
+				<View style={{ height: stickyHeaderHeight }} />
+			);
 		}
 	}
 
