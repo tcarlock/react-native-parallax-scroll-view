@@ -56,8 +56,7 @@ class ParallaxScrollView extends Component {
 		this.state = {
 			scrollY: new Animated.Value(0),
 			viewHeight: window.height,
-			viewWidth: window.width,
-			parallaxHeaderHeight: window.height,
+			viewWidth: window.width
 		}
 		this.scrollY = new Animated.Value(0)
 		this._footerComponent = { setNativeProps() {} } // Initial stub
@@ -288,15 +287,9 @@ class ParallaxScrollView extends Component {
 		renderForeground
 	}) {
 		const { scrollY } = this
-		const _this = this
 		const p = pivotPoint(parallaxHeaderHeight, stickyHeaderHeight)
 		return (
-			<View
-				style={ styles.parallaxHeaderContainer }
-				onLayout={ (e) => {
-					const { x, y, width, height } = e.nativeEvent.layout
-					_this.setState({parallaxHeaderHeight: height})
-				}}>
+			<View style={ styles.parallaxHeaderContainer }>
 				<Animated.View
 					style={[
 						styles.parallaxHeader,
