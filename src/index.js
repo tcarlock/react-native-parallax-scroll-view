@@ -8,7 +8,7 @@ import {
 
 const styles = require('./styles');
 
-const { bool, func, number, string } = React.PropTypes;
+import { bool, func, number, string } from 'prop-types';
 
 const window = Dimensions.get('window');
 
